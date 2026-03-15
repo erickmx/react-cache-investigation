@@ -1,0 +1,7 @@
+{
+  "name": "api-interceptor",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts"
+}
