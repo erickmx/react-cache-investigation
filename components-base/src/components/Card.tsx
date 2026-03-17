@@ -20,7 +20,7 @@ export function Card({
   children 
 }: CardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div style={{ backgroundColor: '#151c2c' }} className="rounded-lg shadow-md overflow-hidden hover:shadow-[0_0_20px_rgba(57,255,20,0.3)] transition-all">
       {image && <CardImage src={image} alt={imageAlt} />}
       {children || (
         <CardBody 

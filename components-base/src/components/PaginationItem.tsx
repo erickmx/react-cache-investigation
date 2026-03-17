@@ -8,11 +8,11 @@ export function PaginationItem({ pageNumber, isActive = false, onClick }: Pagina
   return (
     <button
       onClick={() => onClick(pageNumber)}
-      className={`w-10 h-10 rounded-full font-medium transition-colors ${
-        isActive
-          ? 'bg-blue-500 text-white'
-          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-      }`}
+      style={{ 
+        backgroundColor: isActive ? '#39ff14' : '#374151',
+        color: isActive ? '#0a0e17' : '#e8e6e3'
+      }}
+      className="w-10 h-10 rounded-full font-medium transition-colors hover:opacity-80"
     >
       {pageNumber}
     </button>

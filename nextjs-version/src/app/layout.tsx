@@ -13,7 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;500;600&display=swap" rel="stylesheet" />
+      </head>
+      <body style={{ backgroundColor: '#0a0e17', color: '#e8e6e3', fontFamily: "'Exo 2', sans-serif" }}>{children}</body>
     </html>
   )
 }

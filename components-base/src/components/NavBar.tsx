@@ -24,7 +24,7 @@ const episodeOptions: DropdownItemData[] = [
 
 export function NavBar({ onSearch, onDropdownSelect }: NavBarProps) {
   return (
-    <nav className="bg-gray-800 px-6 py-4">
+    <nav style={{ backgroundColor: '#1f2937' }} className="px-6 py-4">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         <div className="flex items-center gap-4">
           <Dropdown
@@ -42,7 +42,7 @@ export function NavBar({ onSearch, onDropdownSelect }: NavBarProps) {
         </div>
 
         <div className="flex-shrink-0">
-          <h1 className="text-white text-xl font-bold">Rick and Morty</h1>
+          <h1 style={{ fontFamily: "'Orbitron', sans-serif" }} className="text-white text-xl font-bold">Rick and Morty</h1>
         </div>
 
         <div className="flex items-center">

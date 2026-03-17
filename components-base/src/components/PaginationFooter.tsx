@@ -78,7 +78,8 @@ export function PaginationFooter({ currentPage, totalPages, onPageChange }: Pagi
       <button
         onClick={() => onPageChange(1)}
         disabled={currentPage === 1}
-        className="px-3 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        style={{ backgroundColor: '#374151', color: '#e8e6e3' }}
+        className="px-3 py-2 text-sm rounded hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         First
       </button>
@@ -86,7 +87,8 @@ export function PaginationFooter({ currentPage, totalPages, onPageChange }: Pagi
       <button
         onClick={handlePrev}
         disabled={currentPage === 1}
-        className="px-3 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        style={{ backgroundColor: '#374151', color: '#e8e6e3' }}
+        className="px-3 py-2 text-sm rounded hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Prev
       </button>
@@ -130,7 +132,8 @@ export function PaginationFooter({ currentPage, totalPages, onPageChange }: Pagi
       <button
         onClick={handleNext}
         disabled={currentPage === totalPages}
-        className="px-3 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        style={{ backgroundColor: '#374151', color: '#e8e6e3' }}
+        className="px-3 py-2 text-sm rounded hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Next
       </button>
@@ -138,7 +141,8 @@ export function PaginationFooter({ currentPage, totalPages, onPageChange }: Pagi
       <button
         onClick={() => onPageChange(totalPages)}
         disabled={currentPage === totalPages}
-        className="px-3 py-2 text-sm bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        style={{ backgroundColor: '#374151', color: '#e8e6e3' }}
+        className="px-3 py-2 text-sm rounded hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Last
       </button>

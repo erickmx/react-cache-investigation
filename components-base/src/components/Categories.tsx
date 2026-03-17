@@ -10,21 +10,21 @@ export function Categories({ activeCategory, onCategoryChange }: CategoriesProps
     <div className="flex gap-4 justify-center py-6">
       <button
         onClick={() => onCategoryChange('characters')}
-        className={`px-6 py-3 rounded-full font-semibold transition-colors ${
-          activeCategory === 'characters'
-            ? 'bg-blue-500 text-white'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-        }`}
+        style={{ 
+          backgroundColor: activeCategory === 'characters' ? '#39ff14' : '#374151',
+          color: activeCategory === 'characters' ? '#0a0e17' : '#e8e6e3'
+        }}
+        className="px-6 py-3 rounded-full font-semibold transition-colors"
       >
         Characters
       </button>
       <button
         onClick={() => onCategoryChange('episodes')}
-        className={`px-6 py-3 rounded-full font-semibold transition-colors ${
-          activeCategory === 'episodes'
-            ? 'bg-blue-500 text-white'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-        }`}
+        style={{ 
+          backgroundColor: activeCategory === 'episodes' ? '#39ff14' : '#374151',
+          color: activeCategory === 'episodes' ? '#0a0e17' : '#e8e6e3'
+        }}
+        className="px-6 py-3 rounded-full font-semibold transition-colors"
       >
         Episodes
       </button>
