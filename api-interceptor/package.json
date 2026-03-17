@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "node --loader ts-node/esm src/server.ts",
     "start": "node --loader ts-node/esm src/server.ts",
-    "mcp": "node --loader ts-node/esm src/mcp-server.ts",
-    "mcp:start": "node --loader ts-node/esm src/mcp-server.ts"
+    "mcp": "npx tsx src/mcp-server.ts",
+    "mcp:start": "npx tsx src/mcp-server.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
