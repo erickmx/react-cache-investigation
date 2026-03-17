@@ -27,7 +27,9 @@ export default [
         HTMLInputElement: 'readonly',
         MouseEvent: 'readonly',
         Node: 'readonly',
-        document: 'readonly'
+        document: 'readonly',
+        console: 'readonly',
+        Buffer: 'readonly'
       }
     },
     plugins: {
