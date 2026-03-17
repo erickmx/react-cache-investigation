@@ -3,7 +3,11 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "allowJs": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "paths": {
+      "common": ["../common/src"],
+      "components-base": ["../components-base/src"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"],
   "exclude": ["node_modules", "dist"]

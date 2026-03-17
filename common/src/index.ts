@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { ofetch } from 'ofetch';
 import type {
   CharacterResponse,
@@ -7,6 +8,15 @@ import type {
   EpisodeFilters,
   Episode,
 } from './types';
+
+export type {
+  CharacterResponse,
+  CharacterFilters,
+  Character,
+  EpisodeResponse,
+  EpisodeFilters,
+  Episode,
+};
 
 const API_ENDPOINT = process.env.API_ENDPOINT || 'https://rickandmortyapi.com/api';
 
@@ -69,3 +79,27 @@ export async function getEpisodeBy(
     headers: buildHeaders(appId),
   });
 }
+
+export const getCachedCharacters = cache(
+  async (page: number = 1, appId?: string): Promise<CharacterResponse> => {
+    return getAllCharacters(page, appId);
+  }
+);
+
+export const getCachedCharacterById = cache(
+  async (id: number, appId?: string): Promise<Character> => {
+    return getCharacter(id, appId);
+  }
+);
+
+export const getCachedEpisodes = cache(
+  async (page: number = 1, appId?: string): Promise<EpisodeResponse> => {
+    return getAllEpisodes(page, appId);
+  }
+);
+
+export const getCachedEpisodeById = cache(
+  async (id: number, appId?: string): Promise<Episode> => {
+    return getEpisode(id, appId);
+  }
+);

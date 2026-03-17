@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "lib": ["ES2020"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "dist/server",
+    "rootDir": "server",
+    "resolveJsonModule": true,
+    "paths": {
+      "common": ["../common/src"],
+      "components-base": ["../components-base/src"]
+    },
+    "baseUrl": "."
+  },
+  "include": ["server/**/*"],
+  "exclude": ["node_modules"]
+}
