@@ -22,7 +22,12 @@ export default [
         node: true,
         jest: true,
         es2021: true,
-        process: true
+        process: true,
+        HTMLDivElement: 'readonly',
+        HTMLInputElement: 'readonly',
+        MouseEvent: 'readonly',
+        Node: 'readonly',
+        document: 'readonly'
       }
     },
     plugins: {
