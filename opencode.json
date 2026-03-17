@@ -20,9 +20,8 @@
     "api-interceptor": {
       "type": "local",
       "command": [
-        "node",
-        "--loader",
-        "ts-node/esm",
+        "npx",
+        "tsx",
         "api-interceptor/src/mcp-server.ts"
       ]
     }
