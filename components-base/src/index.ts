@@ -36,3 +36,9 @@ export type { PaginationGroupProps } from './components/PaginationGroup';
 
 export { PaginationFooter } from './components/PaginationFooter';
 export type { PaginationFooterProps } from './components/PaginationFooter';
+
+export { Sidebar } from './components/Sidebar';
+export type { SidebarProps } from './components/Sidebar';
+
+export { HomeLayout } from './components/HomeLayout';
+export type { HomeLayoutProps } from './components/HomeLayout';

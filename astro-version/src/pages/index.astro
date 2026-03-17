@@ -1,10 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HomeLayoutClient from '../components/HomeLayoutClient';
+import { getCachedCharacters, getCachedEpisodes } from 'common';
+
+const [characters, episodes] = await Promise.all([
+  getCachedCharacters(1),
+  getCachedEpisodes(1),
+]);
 ---
 
 <Layout title="React Cache Investigation - Astro Version">
-	<main>
-		<h1>React Cache Investigation - Astro Version</h1>
-		<p>Astro application for testing React caching behaviors.</p>
-	</main>
+	<HomeLayoutClient 
+		client:load 
+		characters={characters.results} 
+		episodes={episodes.results}
+		totalCharacters={characters.info.count}
+	/>
 </Layout>

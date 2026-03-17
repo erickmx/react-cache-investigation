@@ -25,12 +25,12 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@Package/astro-version": ["astro-version/src"],
-      "@Package/components-base": ["components-base/src"],
-      "@Package/common": ["common/src"],
-      "@Package/nextjs-version": ["nextjs-version/src"],
-      "@Package/vanilla-version": ["vanilla-version/src"],
-      "@Package/api-interceptor": ["api-interceptor/src"]
+      "common": ["common/src"],
+      "components-base": ["components-base/src"],
+      "astro-version": ["astro-version/src"],
+      "nextjs-version": ["nextjs-version/src"],
+      "vanilla-version": ["vanilla-version/src"],
+      "api-interceptor": ["api-interceptor/src"]
     }
   }
 }
