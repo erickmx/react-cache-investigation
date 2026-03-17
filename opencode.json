@@ -24,8 +24,7 @@
         "--loader",
         "ts-node/esm",
         "api-interceptor/src/mcp-server.ts"
-      ],
-      "description": "API interceptor MCP server for debugging server-to-server requests. Provides tools to query intercepted requests by date, URL, method, and status."
+      ]
     }
   }
 }

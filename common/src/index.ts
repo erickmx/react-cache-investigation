@@ -10,75 +10,62 @@ import type {
 
 const API_ENDPOINT = process.env.API_ENDPOINT || 'https://rickandmortyapi.com/api';
 
-/**
- * Creates a fetch instance with the base URL configured
- */
+export function buildHeaders(appId?: string): Record<string, string> | undefined {
+  return appId ? { 'X-App-Id': appId } : undefined;
+}
+
 const apiFetch = ofetch.create({
   baseURL: API_ENDPOINT,
 });
 
-/**
- * Get all characters with optional pagination
- * @param page - Page number (optional)
- * @returns Paginated list of characters
- */
-export async function getAllCharacters(page?: number): Promise<CharacterResponse> {
+export async function getAllCharacters(
+  page?: number,
+  appId?: string
+): Promise<CharacterResponse> {
   return apiFetch('/character', {
     query: page ? { page } : undefined,
+    headers: buildHeaders(appId),
   });
 }
 
-/**
- * Get a single character by ID
- * @param id - Character ID
- * @returns Character object
- */
-export async function getCharacter(id: number): Promise<Character> {
-  return apiFetch(`/character/${id}`);
+export async function getCharacter(id: number, appId?: string): Promise<Character> {
+  return apiFetch(`/character/${id}`, {
+    headers: buildHeaders(appId),
+  });
 }
 
-/**
- * Filter characters by various criteria
- * @param filters - Object containing filter criteria
- * @returns Paginated list of filtered characters
- */
 export async function getCharacterBy(
-  filters: CharacterFilters
+  filters: CharacterFilters,
+  appId?: string
 ): Promise<CharacterResponse> {
   return apiFetch('/character', {
     query: filters as Record<string, string>,
+    headers: buildHeaders(appId),
   });
 }
 
-/**
- * Get all episodes with optional pagination
- * @param page - Page number (optional)
- * @returns Paginated list of episodes
- */
-export async function getAllEpisodes(page?: number): Promise<EpisodeResponse> {
+export async function getAllEpisodes(
+  page?: number,
+  appId?: string
+): Promise<EpisodeResponse> {
   return apiFetch('/episode', {
     query: page ? { page } : undefined,
+    headers: buildHeaders(appId),
   });
 }
 
-/**
- * Get a single episode by ID
- * @param id - Episode ID
- * @returns Episode object
- */
-export async function getEpisode(id: number): Promise<Episode> {
-  return apiFetch(`/episode/${id}`);
+export async function getEpisode(id: number, appId?: string): Promise<Episode> {
+  return apiFetch(`/episode/${id}`, {
+    headers: buildHeaders(appId),
+  });
 }
 
-/**
- * Filter episodes by various criteria
- * @param filters - Object containing filter criteria
- * @returns Paginated list of filtered episodes
- */
 export async function getEpisodeBy(
-  filters: EpisodeFilters
+  filters: EpisodeFilters,
+  appId?: string
 ): Promise<EpisodeResponse> {
   return apiFetch('/episode', {
     query: filters as Record<string, string>,
+    headers: buildHeaders(appId),
   });
 }
