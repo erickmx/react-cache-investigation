@@ -3,8 +3,8 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import { insertRequest, insertResponse, queryRequests, getRequestById, getRequestStats, QueryFilters } from './database.js';
 
 const app = express();
-const PORT = process.env.PORT || 3001;
-const TARGET_API = process.env.TARGET_API || 'https://rickandmortyapi.com';
+const PORT = process.env.PORT || 3002;
+const TARGET_API = process.env.TARGET_API || 'https://rickandmortyapi.com/api';
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,19 +20,22 @@ const proxyOptions: any = {
     const headers = req.headers as Record<string, string>;
 
     const requestId = insertRequest(timeRequest, url, method, headers, null, null);
+    (req as any).requestId = requestId;
+  },
+  onProxyRes: (proxyRes: any, req: any) => {
+    const requestId = (req as any).requestId;
+    if (!requestId) return;
 
-    proxyReq.on('response', (proxyRes: any) => {
-      let responseData = '';
+    let responseData = '';
 
-      proxyRes.on('data', (chunk: Buffer) => {
-        responseData += chunk.toString();
-      });
+    proxyRes.on('data', (chunk: Buffer) => {
+      responseData += chunk.toString();
+    });
 
-      proxyRes.on('end', () => {
-        const status = proxyRes.statusCode || 200;
-        const responseHeaders = proxyRes.headers as Record<string, string>;
-        insertResponse(requestId, status, responseHeaders, null, responseData);
-      });
+    proxyRes.on('end', () => {
+      const status = proxyRes.statusCode || 200;
+      const responseHeaders = proxyRes.headers as Record<string, string>;
+      insertResponse(requestId, status, responseHeaders, null, responseData);
     });
   },
   onError: (_err: Error, _req: Request, res: Response) => {
