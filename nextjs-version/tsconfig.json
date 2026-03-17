@@ -1,13 +1,32 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "plugins": [{ "name": "next" }],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
-      "@/*": ["./src/*"],
-      "common": ["../common/src"],
-      "components-base": ["../components-base/src"]
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "common": [
+        "../common/src"
+      ],
+      "components-base": [
+        "../components-base/src"
+      ]
+    },
+    "incremental": true,
+    "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

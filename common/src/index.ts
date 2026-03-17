@@ -1,4 +1,3 @@
-import { cache } from 'react';
 import { ofetch } from 'ofetch';
 import type {
   CharacterResponse,
@@ -19,6 +18,30 @@ export type {
 };
 
 const API_ENDPOINT = process.env.API_ENDPOINT || 'https://rickandmortyapi.com/api';
+
+const characterCache = new Map<string, { data: CharacterResponse; timestamp: number }>();
+const characterByIdCache = new Map<number, { data: Character; timestamp: number }>();
+const episodeCache = new Map<string, { data: EpisodeResponse; timestamp: number }>();
+const episodeByIdCache = new Map<number, { data: Episode; timestamp: number }>();
+const CACHE_TTL = 5 * 60 * 1000;
+
+function getCachedOrFetch<K, V>(
+  cache: Map<K, { data: V; timestamp: number }>,
+  key: K,
+  fetchFn: () => Promise<V>
+): Promise<V> {
+  const cached = cache.get(key);
+  const now = Date.now();
+  
+  if (cached && now - cached.timestamp < CACHE_TTL) {
+    return Promise.resolve(cached.data);
+  }
+  
+  return fetchFn().then(data => {
+    cache.set(key, { data, timestamp: now });
+    return data;
+  });
+}
 
 export function buildHeaders(appId?: string): Record<string, string> | undefined {
   return appId ? { 'X-App-Id': appId } : undefined;
@@ -80,26 +103,32 @@ export async function getEpisodeBy(
   });
 }
 
-export const getCachedCharacters = cache(
-  async (page: number = 1, appId?: string): Promise<CharacterResponse> => {
-    return getAllCharacters(page, appId);
-  }
-);
+export async function getCachedCharacters(
+  page: number = 1,
+  appId?: string
+): Promise<CharacterResponse> {
+  const cacheKey = `${page}-${appId || 'default'}`;
+  return getCachedOrFetch(characterCache, cacheKey, () => getAllCharacters(page, appId));
+}
 
-export const getCachedCharacterById = cache(
-  async (id: number, appId?: string): Promise<Character> => {
-    return getCharacter(id, appId);
-  }
-);
+export async function getCachedCharacterById(
+  id: number,
+  appId?: string
+): Promise<Character> {
+  return getCachedOrFetch(characterByIdCache, id, () => getCharacter(id, appId));
+}
 
-export const getCachedEpisodes = cache(
-  async (page: number = 1, appId?: string): Promise<EpisodeResponse> => {
-    return getAllEpisodes(page, appId);
-  }
-);
+export async function getCachedEpisodes(
+  page: number = 1,
+  appId?: string
+): Promise<EpisodeResponse> {
+  const cacheKey = `${page}-${appId || 'default'}`;
+  return getCachedOrFetch(episodeCache, cacheKey, () => getAllEpisodes(page, appId));
+}
 
-export const getCachedEpisodeById = cache(
-  async (id: number, appId?: string): Promise<Episode> => {
-    return getEpisode(id, appId);
-  }
-);
+export async function getCachedEpisodeById(
+  id: number,
+  appId?: string
+): Promise<Episode> {
+  return getCachedOrFetch(episodeByIdCache, id, () => getEpisode(id, appId));
+}
