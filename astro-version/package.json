@@ -2,5 +2,19 @@
   "name": "astro-version",
   "version": "1.0.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.0.0",
+    "@astrojs/node": "^8.0.0",
+    "common": "*",
+    "components-base": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
 }
