@@ -33,6 +33,7 @@ const proxyOptions: any = {
     });
 
     proxyRes.on('end', () => {
+      console.log('REQUEST_INTERCEPTED')
       const status = proxyRes.statusCode || 200;
       const responseHeaders = proxyRes.headers as Record<string, string>;
       insertResponse(requestId, status, responseHeaders, null, responseData);
@@ -47,7 +48,7 @@ app.use('/', createProxyMiddleware(proxyOptions));
 
 app.get('/api/requests', (req: Request, res: Response) => {
   const query = req.query as Record<string, unknown>;
-  
+
   const getString = (val: unknown): string | undefined => {
     if (val === undefined) return undefined;
     if (Array.isArray(val)) return val[0];

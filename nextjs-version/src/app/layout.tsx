@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getCachedCharacters, getCachedEpisodes } from 'common';
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -6,11 +7,16 @@ export const metadata: Metadata = {
   description: 'Next.js application for testing React caching behaviors',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const [characters, episodes] = await Promise.all([
+    getCachedCharacters(),
+    getCachedEpisodes(),
+  ]);
+
   return (
     <html lang="en">
       <head>
