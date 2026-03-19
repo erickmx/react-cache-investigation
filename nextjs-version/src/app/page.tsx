@@ -6,8 +6,8 @@ export const dynamic = 'force-dynamic';
 
 async function getData() {
   const [characters, episodes] = await Promise.all([
-    getCachedCharacters(1),
-    getCachedEpisodes(1),
+    getCachedCharacters(),
+    getCachedEpisodes(),
   ]);
 
   return {
